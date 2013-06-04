@@ -74,7 +74,7 @@ function pipe_multi(input, max_procs, cmd, ...)
 
 	-- Loop until we have a status for each input ie #status == #input
 	while remaining > 0 do
-		print ("pipe: remaining = "..remaining)
+		--print ("pipe: remaining = "..remaining)
 
 		-- Launch each child process and pipe stdin to it
 		while inflight < max_procs and idx < #input do
@@ -92,7 +92,7 @@ function pipe_multi(input, max_procs, cmd, ...)
 
 			assert(lpid ~= nil, "filter() unable to popen3()")
 
-			print("pipe: spawned pid = "..lpid.." with cmd = "..cmd.." for input idx = "..idx)
+			--print("pipe: spawned pid = "..lpid.." with cmd = "..cmd.." for input idx = "..idx)
 
 			lookup_fd2table[proc[idx]['stdin_fd']] = proc[idx]
 			lookup_fd2table[proc[idx]['stdout_fd']] = proc[idx]
@@ -192,7 +192,7 @@ function pipe_multi(input, max_procs, cmd, ...)
 			assert(wait_pid ~= nil)
 			local wait_idx = lookup_pid2idx[wait_pid]
 
-			print ("pipe: pid = "..wait_pid.." completed for input idx = "..wait_idx)
+			--print ("pipe: pid = "..wait_pid.." completed for input idx = "..wait_idx)
 			local mytable = proc[lookup_pid2idx[wait_pid]]
 
 			-- Make sure that poll correctly handled all the file handles
