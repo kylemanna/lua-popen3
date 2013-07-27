@@ -21,7 +21,7 @@ function popen3(path, ...)
 	local r2, w2 = posix.pipe()
 	local r3, w3 = posix.pipe()
 
-	assert((w1 ~= nil or r2 ~= nil or r3 ~= nil), "pipe() failed")
+	assert((w1 ~= nil and r2 ~= nil and r3 ~= nil), "pipe() failed")
 
 	local pid, err = posix.fork()
 	assert(pid ~= nil, "fork() failed")
