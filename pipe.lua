@@ -12,6 +12,8 @@
 --
 -- Includes a pipe_multi() wrapper that is simple, straight to the point.
 --
+
+local posix = require("posix")
  
 --
 -- Simple popen3() implementation
