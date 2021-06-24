@@ -136,7 +136,8 @@ function pipe_multi(input, max_procs, cmd, ...)
 				if fds[fd].revents.IN then
 
 					local mytable = lookup_fd2table[fd]
-					table.insert(mytable['stdout'], posix.read(fd, bufsize))
+					if     mytable['stdout_fd'] == fd then table.insert(mytable['stdout'], posix.read(fd, bufsize))
+					elseif mytable['stderr_fd'] == fd then table.insert(mytable['stderr'], posix.read(fd, bufsize)) end
 
 				-- Write stdin to child
 				elseif fds[fd].revents.OUT then
